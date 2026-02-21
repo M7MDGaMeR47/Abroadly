@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbroadLy | Verified Mentorship for Algerian Students</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hero-pattern {
+            background-color: #047857;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23065f46' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .verified-badge {
+            background: #e0f2fe;
+            color: #0284c7;
+            border: 1px solid #bae6fd;
+        }
+        /* Hide scrollbar for cleaner UI in sidebar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="bg-emerald-600 text-white p-1.5 rounded-lg">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-emerald-900">AbroadLy</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+                    <button onclick="navigateTo('home', 'problem')" class="hover:text-emerald-600 transition">Why Us?</button>
+                    <button onclick="navigateTo('directory')" class="hover:text-emerald-600 transition font-semibold text-emerald-700">Find a Mentor</button>
+                    <button onclick="navigateTo('home', 'trust')" class="hover:text-emerald-600 transition">Verification</button>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="hidden md:block text-sm font-medium text-gray-600 hover:text-emerald-600">Log In</button>
+                    <button onclick="navigateTo('directory')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-lg shadow-emerald-600/20">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- VIEW: LANDING PAGE -->
+    <div id="view-home" class="view-section">
+        <!-- Hero Section -->
+        <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 hero-pattern text-white overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-emerald-900/90"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto">
+                    <div class="inline-flex items-center gap-2 bg-emerald-800/50 rounded-full px-4 py-1.5 border border-emerald-500/30 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                        <span class="text-xs font-semibold tracking-wide uppercase text-emerald-100">Live in Algeria</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                        Verified mentors guiding <br/>
+                        <span class="text-emerald-200">Algerian students</span> to <br/>
+                        global opportunities.
+                    </h1>
+                    <p class="text-lg md:text-xl text-emerald-100 mb-10 leading-relaxed max-w-2xl mx-auto">
+                        Stop wasting money on bad advice. Connect with real students and professionals working in France, Canada, Germany, and beyond.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="navigateTo('directory')" class="bg-white text-emerald-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                            Find a Mentor
+                        </button>
+                        <button class="bg-transparent border-2 border-emerald-200 text-emerald-50 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition backdrop-blur-sm">
+                            Become a Mentor
+                        </button>
+                    </div>
+                    
+                    <!-- Trust Signals -->
+                    <div class="mt-12 flex flex-wrap justify-center gap-8 text-emerald-200/80 text-sm font-medium">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-green-400"></i> ID Verified
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-file-contract text-green-400"></i> Academic Proof
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-lock text-green-400"></i> Secure Payments
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem & Solution -->
+        <section id="problem" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-6">The Problem: <span class="text-red-500">Misinformation</span></h2>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 text-red-600">
+                                    <i class="fa-solid fa-thumbs-down"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Fake Advice on Social Media</h3>
+                                    <p class="text-gray-600">Facebook groups are full of outdated info and scammers.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 text-red-600">
+                                    <i class="fa-solid fa-money-bill-wave"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Expensive Agencies</h3>
+                                    <p class="text-gray-600">Agencies push you to partner schools just to get a commission.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-emerald-50 p-8 rounded-2xl border border-emerald-100 relative">
+                        <div class="absolute -top-4 -right-4 bg-emerald-600 text-white px-4 py-2 rounded-lg font-bold shadow-lg">The Solution</div>
+                        <h2 class="text-3xl font-bold text-emerald-900 mb-6">Why AbroadLy?</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                                <span class="text-gray-700"><strong>Verified Mentors:</strong> We check IDs and student cards.</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                                <span class="text-gray-700"><strong>Transparent Reviews:</strong> Only students who took sessions can rate.</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                                <span class="text-gray-700"><strong>Zero-Commission Rewards:</strong> Top mentors earn 100% of their fee.</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                                <span class="text-gray-700"><strong>First Session Free:</strong> Try before you commit.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Trust Layer -->
+        <section id="trust" class="py-20 bg-gray-50 border-y border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-emerald-600 font-bold tracking-wide uppercase text-sm">Our Competitive Edge</span>
+                    <h2 class="text-3xl font-bold text-gray-900 mt-2">The "Trust Layer"</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <div class="w-16 h-16 mx-auto bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-2xl mb-4">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">1. Identity Verification</h3>
+                        <p class="text-gray-600 text-sm">Every mentor submits a passport and video verification to ensure they are a real person.</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <div class="w-16 h-16 mx-auto bg-purple-50 rounded-full flex items-center justify-center text-purple-600 text-2xl mb-4">
+                            <i class="fa-solid fa-university"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">2. Academic Proof</h3>
+                        <p class="text-gray-600 text-sm">We verify admission letters, student cards, or work contracts. No fake experts.</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <div class="w-16 h-16 mx-auto bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 text-2xl mb-4">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">3. Session-Only Reviews</h3>
+                        <p class="text-gray-600 text-sm">Reviews can only be left after a completed, paid video session via our platform.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Roadmap -->
+        <section id="roadmap" class="py-20 bg-emerald-900 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6">Roadmap</h2>
+                        <p class="text-emerald-200 mb-8">We are building the digital infrastructure for North African student mobility.</p>
+                        
+                        <div class="space-y-8 border-l-2 border-emerald-700 ml-3 pl-8 relative">
+                            <div class="relative">
+                                <div class="absolute -left-[41px] bg-emerald-500 w-6 h-6 rounded-full border-4 border-emerald-900"></div>
+                                <h4 class="font-bold text-lg">v0: Validation (Now)</h4>
+                                <p class="text-sm text-emerald-300">Manual matchmaking, WhatsApp scheduling, MVP landing page.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[41px] bg-gray-600 w-6 h-6 rounded-full border-4 border-emerald-900"></div>
+                                <h4 class="font-bold text-lg opacity-80">MVP (Months 2-3)</h4>
+                                <p class="text-sm text-emerald-300 opacity-80">Automated booking, payment gateway integration, automated verification.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-800 p-8 rounded-2xl border border-emerald-700">
+                        <h3 class="text-2xl font-bold mb-4">The Ask</h3>
+                        <p class="mb-6 text-emerald-100">Seeking funding to build the MVP and run growth experiments.</p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-emerald-900 p-4 rounded-lg text-center">
+                                <div class="text-2xl font-bold">150K+</div>
+                                <div class="text-xs text-emerald-300 uppercase">Waitlist</div>
+                            </div>
+                            <div class="bg-emerald-900 p-4 rounded-lg text-center">
+                                <div class="text-2xl font-bold">15%</div>
+                                <div class="text-xs text-emerald-300 uppercase">Take Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VIEW: MENTOR DIRECTORY (New Layer) -->
+    <div id="view-directory" class="view-section hidden pt-20 bg-gray-50 flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">Find Your Mentor</h1>
+                <p class="text-gray-600 mt-2">Use filters to find the perfect match for your study abroad journey.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                
+                <!-- Sidebar Filters -->
+                <aside class="w-full lg:w-1/4 flex-shrink-0">
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm sticky top-24">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-gray-900">Filters</h3>
+                            <button onclick="resetFilters()" class="text-xs text-emerald-600 hover:underline">Reset</button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <!-- Country -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Target Country</label>
+                                <select id="dirCountry" onchange="applyFilters()" class="w-full text-sm border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500">
+                                    <option value="all">Any Country</option>
+                                    <option value="France">France</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="UK">UK</option>
+                                    <option value="USA">USA</option>
+                                </select>
+                            </div>
+
+                            <!-- Field -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Field of Study</label>
+                                <select id="dirField" onchange="applyFilters()" class="w-full text-sm border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500">
+                                    <option value="all">Any Field</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Medicine">Medicine</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Law">Law</option>
+                                    <option value="Arts">Arts</option>
+                                </select>
+                            </div>
+
+                            <!-- Price Range -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Max Price (DZD)</label>
+                                <input type="range" id="dirPrice" min="1000" max="10000" step="500" value="10000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-600" oninput="document.getElementById('priceDisplay').innerText = this.value + ' DZD'; applyFilters()">
+                                <div class="text-xs text-gray-500 mt-1 text-right" id="priceDisplay">10000 DZD</div>
+                            </div>
+
+                            <!-- Languages -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Language</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-2 text-sm text-gray-600">
+                                        <input type="checkbox" class="lang-check text-emerald-600 rounded focus:ring-emerald-500" value="Arabic" onchange="applyFilters()"> Arabic
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm text-gray-600">
+                                        <input type="checkbox" class="lang-check text-emerald-600 rounded focus:ring-emerald-500" value="French" onchange="applyFilters()"> French
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm text-gray-600">
+                                        <input type="checkbox" class="lang-check text-emerald-600 rounded focus:ring-emerald-500" value="English" onchange="applyFilters()"> English
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Expertise Toggles -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Expertise</label>
+                                <label class="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                                    <input type="checkbox" id="dirScholarship" onchange="applyFilters()" class="text-emerald-600 rounded focus:ring-emerald-500"> 
+                                    Scholarship Expert
+                                </label>
+                                <label class="flex items-center gap-2 text-sm text-gray-600">
+                                    <input type="checkbox" id="dirVerified" checked disabled class="text-emerald-600 rounded focus:ring-emerald-500 opacity-50"> 
+                                    ID Verified (All)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="flex-grow">
+                    <!-- Sort Bar -->
+                    <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                        <div class="text-sm text-gray-600">
+                            Showing <span id="resultCount" class="font-bold text-gray-900">0</span> mentors
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm text-gray-500">Sort by:</span>
+                            <select id="sortOption" onchange="applyFilters()" class="text-sm border-none font-semibold text-gray-900 focus:ring-0 cursor-pointer bg-transparent">
+                                <option value="relevance">Relevance</option>
+                                <option value="rating">Highest Rated</option>
+                                <option value="priceLow">Price: Low to High</option>
+                                <option value="experience">Experience</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Grid -->
+                    <div id="directoryGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Cards injected here -->
+                    </div>
+                    
+                    <!-- Pagination Mock -->
+                    <div class="mt-10 text-center">
+                        <button class="px-6 py-2 border border-gray-300 rounded-full text-sm font-medium hover:bg-gray-50 transition text-gray-600">
+                            Load More Mentors
+                        </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center items-center gap-2 mb-4">
+                <i class="fa-solid fa-graduation-cap text-emerald-500 text-xl"></i>
+                <span class="font-bold text-xl text-white">AbroadLy</span>
+            </div>
+            <p class="text-sm mb-8">Oran, Algeria. Made with <i class="fa-solid fa-heart text-red-500"></i> for the future.</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-900">Book Session</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Enhanced Mock Data ---
+        const mentors = [
+            {
+                id: 1,
+                name: "Yacine B.",
+                university: "Polytechnique Paris",
+                location: "France",
+                flag: "fr",
+                major: "Engineering",
+                bio: "Helping students crack the Concours for Grande Ecoles. 3 years in Paris.",
+                rating: 5.0,
+                reviews: 12,
+                image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Yacine&backgroundColor=c0aede",
+                price: 2000,
+                languages: ["Arabic", "French"],
+                scholarship: true,
+                experience: 3,
+                successRate: 95
+            },
+            {
+                id: 2,
+                name: "Amira K.",
+                university: "McGill University",
+                location: "Canada",
+                flag: "ca",
+                major: "Medicine",
+                bio: "Navigating the CAQ and Study Permit process for medical fields.",
+                rating: 4.9,
+                reviews: 24,
+                image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Amira&backgroundColor=ffdfbf",
+                price: 3500,
+                languages: ["Arabic", "English", "French"],
+                scholarship: false,
+                experience: 5,
+                successRate: 98
+            },
+            {
+                id: 3,
+                name: "Karim S.",
+                university: "TU Munich",
+                location: "Germany",
+                flag: "de",
+                major: "Computer Science",
+                bio: "Master's student in AI. Can help with blocked accounts and German visas.",
+                rating: 4.8,
+                reviews: 8,
+                image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Karim&backgroundColor=b6e3f4",
+                price: 2500,
+                languages: ["Arabic", "English", "German"],
+                scholarship: false,
+                experience: 2,
+                successRate: 88
+            },
+            {
+                id: 4,
+                name: "Nour E.",
+                university: "University of Manchester",
+                location: "UK",
+                flag: "gb",
+                major: "Business",
+                bio: "Expert in Chevening scholarships and UK tiered visas.",
+                rating: 5.0,
+                reviews: 31,
+                image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Nour&backgroundColor=ffdfbf",
+                price: 3000,
+                languages: ["Arabic", "English"],
+                scholarship: true,
+                experience: 4,
+                successRate: 92
+            },
+            {
+                id: 5,
+                name: "Mehdi A.",
+                university: "HEC Montreal",
+                location: "Canada",
+                flag: "ca",
+                major: "Business",
+                bio: "Specialized in Finance. I review motivation letters perfectly.",
+                rating: 4.7,
+                reviews: 15,
+                image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mehdi&backgroundColor=c0aede",
+                price: 3200,
+                languages: ["French", "English"],
+                scholarship: true,
+                experience: 3,
+                successRate: 89
+            },
+            {
+                id: 6,
+                name: "Sarah L.",
+                university: "Sorbonne University",
+                location: "France",
+                flag: "fr",
+                major: "Law",
+                bio: "Campus France procedure expert. Don't get rejected for a simple mistake.",
+                rating: 4.9,
+                reviews: 42,
+                image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&backgroundColor=b6e3f4",
+                price: 1800,
+                languages: ["Arabic", "French"],
+                scholarship: false,
+                experience: 6,
+                successRate: 99
+            },
+            {
+                id: 7,
+                name: "Omar F.",
+                university: "MIT",
+                location: "USA",
+                flag: "us",
+                major: "Computer Science",
+                bio: "Full ride scholarship to MIT. I can help you with SATs and essays.",
+                rating: 5.0,
+                reviews: 5,
+                image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Omar&backgroundColor=ffdfbf",
+                price: 5000,
+                languages: ["Arabic", "English"],
+                scholarship: true,
+                experience: 1,
+                successRate: 100
+            },
+            {
+                id: 8,
+                name: "Lina B.",
+                university: "Charité Berlin",
+                location: "Germany",
+                flag: "de",
+                major: "Medicine",
+                bio: "Medical residency in Germany. Language exam prep guidance.",
+                rating: 4.8,
+                reviews: 18,
+                image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lina&backgroundColor=c0aede",
+                price: 2800,
+                languages: ["Arabic", "German", "English"],
+                scholarship: false,
+                experience: 4,
+                successRate: 94
+            }
+        ];
+
+        // --- 2. Navigation Logic ---
+        function navigateTo(viewId, sectionId = null) {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            
+            // Show requested view
+            const target = document.getElementById(`view-${viewId}`);
+            if (target) {
+                target.classList.remove('hidden');
+                window.scrollTo(0,0);
+            }
+
+            // Scroll to specific section if needed
+            if (sectionId && viewId === 'home') {
+                setTimeout(() => {
+                    const section = document.getElementById(sectionId);
+                    if(section) section.scrollIntoView({behavior: 'smooth'});
+                }, 100);
+            }
+
+            // If navigating to directory, ensure we render
+            if (viewId === 'directory') {
+                applyFilters();
+            }
+        }
+
+        // --- 3. Filter & Sort Engine ---
+        function applyFilters() {
+            // Get inputs
+            const country = document.getElementById('dirCountry').value;
+            const field = document.getElementById('dirField').value;
+            const maxPrice = parseInt(document.getElementById('dirPrice').value);
+            const scholarship = document.getElementById('dirScholarship').checked;
+            const sort = document.getElementById('sortOption').value;
+            
+            // Get checked languages
+            const checkedLangs = Array.from(document.querySelectorAll('.lang-check:checked')).map(cb => cb.value);
+
+            // Filter
+            let results = mentors.filter(m => {
+                if (country !== 'all' && m.location !== country) return false;
+                if (field !== 'all' && m.major !== field) return false;
+                if (m.price > maxPrice) return false;
+                if (scholarship && !m.scholarship) return false;
+                if (checkedLangs.length > 0) {
+                    const hasLang = checkedLangs.some(l => m.languages.includes(l));
+                    if (!hasLang) return false;
+                }
+                return true;
+            });
+
+            // Sort
+            if (sort === 'rating') results.sort((a, b) => b.rating - a.rating);
+            if (sort === 'priceLow') results.sort((a, b) => a.price - b.price);
+            if (sort === 'experience') results.sort((a, b) => b.experience - a.experience);
+            if (sort === 'relevance') {
+                // Mock relevance: Mix of rating, success rate and randomness
+                results.sort((a, b) => (b.successRate + b.rating * 20) - (a.successRate + a.rating * 20));
+            }
+
+            renderDirectoryGrid(results);
+        }
+
+        function renderDirectoryGrid(data) {
+            const grid = document.getElementById('directoryGrid');
+            const countEl = document.getElementById('resultCount');
+            
+            countEl.innerText = data.length;
+            grid.innerHTML = '';
+
+            if (data.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-20 text-center">
+                        <div class="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-gray-400">
+                            <i class="fa-solid fa-search text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">No mentors found</h3>
+                        <p class="text-gray-500">Try adjusting your filters.</p>
+                        <button onclick="resetFilters()" class="mt-4 text-emerald-600 font-medium hover:underline">Reset Filters</button>
+                    </div>
+                `;
+                return;
+            }
+
+            data.forEach(mentor => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl shadow-sm hover:shadow-lg transition border border-gray-200 overflow-hidden flex flex-col h-full group';
+                
+                // Badge Logic
+                let badges = '';
+                if(mentor.scholarship) badges += `<span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Scholarship Expert</span>`;
+                
+                card.innerHTML = `
+                    <div class="p-5 flex-grow">
+                        <!-- Header -->
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="relative">
+                                <img src="${mentor.image}" alt="${mentor.name}" class="w-14 h-14 rounded-full border-2 border-emerald-50">
+                                <div class="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5">
+                                    <i class="fa-solid fa-circle-check text-blue-500 text-sm"></i>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="flex items-center justify-end gap-1 text-yellow-500 text-sm font-bold">
+                                    <span>${mentor.rating}</span> <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="text-xs text-gray-400">${mentor.reviews} reviews</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Info -->
+                        <div class="mb-3">
+                            <h3 class="font-bold text-lg text-gray-900 leading-tight mb-1 group-hover:text-emerald-700 transition">${mentor.name}</h3>
+                            <p class="text-sm text-gray-600 font-medium truncate">${mentor.university}</p>
+                        </div>
+
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md"><i class="fa-solid fa-location-dot mr-1"></i> ${mentor.location}</span>
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md">${mentor.major}</span>
+                            ${badges}
+                        </div>
+                        
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-4 h-10">${mentor.bio}</p>
+
+                        <!-- Stats Row -->
+                        <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-50 pt-3">
+                            <span><i class="fa-solid fa-briefcase mr-1"></i> ${mentor.experience}y Exp</span>
+                            <span class="text-green-600 font-medium"><i class="fa-solid fa-chart-line mr-1"></i> ${mentor.successRate}% Success</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer Action -->
+                    <div class="p-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] text-gray-500 uppercase tracking-wide">Per Session</span>
+                            <span class="font-bold text-gray-900">${mentor.price} DZD</span>
+                        </div>
+                        <button onclick="openBooking(${mentor.id})" class="bg-white border border-gray-300 hover:border-emerald-500 hover:text-emerald-600 text-gray-700 px-4 py-1.5 rounded-lg text-sm font-semibold transition">
+                            Book
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function resetFilters() {
+            document.getElementById('dirCountry').value = 'all';
+            document.getElementById('dirField').value = 'all';
+            document.getElementById('dirPrice').value = 10000;
+            document.getElementById('priceDisplay').innerText = '10000 DZD';
+            document.getElementById('dirScholarship').checked = false;
+            document.querySelectorAll('.lang-check').forEach(cb => cb.checked = false);
+            applyFilters();
+        }
+
+        // --- 4. Booking Logic (Shared) ---
+        function openBooking(mentorId) {
+            const mentor = mentors.find(m => m.id === mentorId);
+            const modal = document.getElementById('bookingModal');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <div class="flex items-center gap-4 mb-6 p-4 bg-emerald-50 rounded-lg">
+                    <img src="${mentor.image}" class="w-12 h-12 rounded-full">
+                    <div>
+                        <h4 class="font-bold text-gray-900">Booking with ${mentor.name}</h4>
+                        <p class="text-sm text-emerald-700">First session is FREE (Intro)</p>
+                    </div>
+                </div>
+
+                <form onsubmit="handleBooking(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
+                        <input type="date" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Topic</label>
+                        <select class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-emerald-500">
+                            <option>Intro Call (Free)</option>
+                            <option>Document Review (${mentor.price} DZD)</option>
+                            <option>Visa Guidance (${mentor.price} DZD)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-lg hover:bg-emerald-700 transition mt-4">
+                        Confirm Booking
+                    </button>
+                </form>
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function handleBooking(e) {
+            e.preventDefault();
+            const content = document.getElementById('modalContent');
+            content.innerHTML = `
+                <div class="text-center py-8">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h4 class="font-bold text-xl text-gray-900 mb-2">Request Sent!</h4>
+                    <p class="text-gray-600 mb-6">The mentor will confirm your slot shortly. Check your email for details.</p>
+                    <button onclick="closeModal()" class="text-emerald-600 font-medium hover:underline">Close</button>
+                </div>
+            `;
+        }
+
+        // Initialize (Default View)
+        // If hash is present, route accordingly, else default to home
+        window.addEventListener('load', () => {
+            renderDirectoryGrid(mentors); // Pre-render directory
+            // Default View is Home (hidden class is on directory by default)
+        });
+
+    </script>
+</body>
+</html>

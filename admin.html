@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abroadly | Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg: #0B0F19;
+            --card: #131A2A;
+            --accent: #F5C97A;
+            --text: #ffffff;
+            --sub: #9ca3af;
+            --border: rgba(255, 255, 255, 0.08);
+            --green: #22c55e;
+            --red: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .badge {
+            background: rgba(245, 201, 122, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(245, 201, 122, 0.3);
+            border-radius: 20px;
+            padding: 0.2rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon.total {
+            background: rgba(245, 201, 122, 0.1);
+            color: var(--accent);
+        }
+
+        .stat-icon.verified {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--green);
+        }
+
+        .stat-icon.pending {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--red);
+        }
+
+        .stat-icon.mentors {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .stat-num {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--sub);
+            margin-top: 2px;
+        }
+
+        .table-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .table-header h2 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .refresh-btn {
+            background: rgba(245, 201, 122, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(245, 201, 122, 0.3);
+            border-radius: 8px;
+            padding: 0.4rem 0.9rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(245, 201, 122, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--sub);
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+            font-size: 0.875rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            background: rgba(245, 201, 122, 0.15);
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .user-name {
+            font-weight: 500;
+        }
+
+        .user-email {
+            font-size: 0.75rem;
+            color: var(--sub);
+        }
+
+        .pill {
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .pill.student {
+            background: rgba(139, 92, 246, 0.15);
+            color: #a78bfa;
+        }
+
+        .pill.mentor {
+            background: rgba(245, 201, 122, 0.15);
+            color: var(--accent);
+        }
+
+        .pill.verified {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--green);
+        }
+
+        .pill.unverified {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--sub);
+        }
+
+        .empty {
+            text-align: center;
+            padding: 3rem;
+            color: var(--sub);
+        }
+
+        .error-msg {
+            text-align: center;
+            padding: 3rem;
+            color: var(--red);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <a href="landingpage.html" class="logo">
+            <i data-lucide="globe" style="width:20px;height:20px;"></i>
+            Abroadly
+        </a>
+        <span class="badge">Admin Panel</span>
+    </div>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-icon total"><i data-lucide="users" style="width:20px;height:20px;"></i></div>
+                <div>
+                    <div class="stat-num" id="count-total">–</div>
+                    <div class="stat-label">Total Users</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon verified"><i data-lucide="check-circle" style="width:20px;height:20px;"></i></div>
+                <div>
+                    <div class="stat-num" id="count-verified">–</div>
+                    <div class="stat-label">Verified</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon pending"><i data-lucide="clock" style="width:20px;height:20px;"></i></div>
+                <div>
+                    <div class="stat-num" id="count-pending">–</div>
+                    <div class="stat-label">Pending Verification</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon mentors"><i data-lucide="graduation-cap" style="width:20px;height:20px;"></i>
+                </div>
+                <div>
+                    <div class="stat-num" id="count-mentors">–</div>
+                    <div class="stat-label">Mentors</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <h2>Registered Users</h2>
+                <button class="refresh-btn" onclick="loadUsers()">
+                    <i data-lucide="refresh-cw" style="width:14px;height:14px;"></i>
+                    Refresh
+                </button>
+            </div>
+            <div id="table-container">
+                <div class="loading"><i data-lucide="loader" style="width:24px;height:24px;"></i>
+                    <p style="margin-top:0.5rem;">Loading users...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        async function loadUsers() {
+            const container = document.getElementById('table-container');
+            container.innerHTML = '<div class="loading"><p>Loading...</p></div>';
+
+            try {
+                const res = await fetch('http://localhost:3000/api/users');
+                if (!res.ok) throw new Error('Failed to fetch');
+                const users = await res.json();
+
+                // Update stats
+                document.getElementById('count-total').textContent = users.length;
+                document.getElementById('count-verified').textContent = users.filter(u => u.isVerified).length;
+                document.getElementById('count-pending').textContent = users.filter(u => !u.isVerified).length;
+                document.getElementById('count-mentors').textContent = users.filter(u => u.role === 'mentor').length;
+
+                if (users.length === 0) {
+                    container.innerHTML = '<div class="empty"><p>No users registered yet.</p></div>';
+                    return;
+                }
+
+                const rows = users.map(u => {
+                    const initials = (u.name || 'U').split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+                    const date = u.createdAt ? new Date(u.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '–';
+                    return `
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="avatar">${initials}</div>
+                  <div>
+                    <div class="user-name">${u.name || '–'}</div>
+                    <div class="user-email">${u.email}</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="pill ${u.role}">${u.role}</span></td>
+              <td><span class="pill ${u.isVerified ? 'verified' : 'unverified'}">${u.isVerified ? 'Verified' : 'Pending'}</span></td>
+              <td style="color:var(--sub); font-size:0.8rem;">${date}</td>
+            </tr>
+          `;
+                }).join('');
+
+                container.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        `;
+                lucide.createIcons();
+            } catch (err) {
+                container.innerHTML = `<div class="error-msg"><p>❌ Cannot connect to the server.<br><small>Make sure the backend (node server.js) is running.</small></p></div>`;
+            }
+        }
+
+        loadUsers();
+    </script>
+</body>
+
+</html>
